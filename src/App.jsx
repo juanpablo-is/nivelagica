@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 
-import Card from '@/components/Card'
-import Game from '@/components/Game'
-import useGames from '@/store/useGames'
+import { Card, Game } from '@/components/index'
+import { useGames } from '@/store'
 
 function App () {
   const { games, actualGame, selectGame } = useGames()

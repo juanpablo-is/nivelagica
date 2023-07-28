@@ -1,7 +1,6 @@
 import { useEffect, useCallback } from 'react'
-
-import useGames from '@/store/useGames'
-import useStateRef from '@/hooks/useStateRef'
+import { useGames } from '@/store'
+import { useStateRef } from '@/hooks'
 
 const Game = ({ title, score = {}, validate }) => {
   const { high, player } = score
