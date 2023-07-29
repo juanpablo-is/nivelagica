@@ -4,3 +4,12 @@ body {
   background-color: #09090b;
   color: white;
 }
+
+#root {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+a {
+  color: #9146ff;
+}
