@@ -1,11 +1,9 @@
-import { authURL } from '@/api/Twitch'
-
-import Button from '@/components/Button'
-import Footer from '@/components/Footer'
+import { Twitch } from '@/api'
+import { Button, Footer } from '@/components'
 
 const Home = () => {
   function handlerAuth () {
-    window.location.href = authURL()
+    window.location.href = Twitch.authURL()
   }
 
   return (

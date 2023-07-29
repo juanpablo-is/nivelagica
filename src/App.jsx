@@ -1,8 +1,5 @@
 import { Switch, Route } from 'wouter'
-
-import Home from './pages/Home'
-import OAuth from './pages/OAuth'
-import Games from './pages/Games'
+import { Home, OAuth, Games } from '@/pages'
 
 function App () {
   return (

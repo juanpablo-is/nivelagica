@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { Card, Game } from '@/components/index'
+import { Card, Game } from '@/components'
 import { useGames } from '@/store'
 
 const Games = () => {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'wouter'
 
-import { getAccountInfo } from '@/api/Twitch'
+import { Twitch } from '@/api'
 import Jelly from '@/components/loaders/Jelly'
 
 const OAuth = () => {
@@ -15,7 +15,7 @@ const OAuth = () => {
         const params = new URLSearchParams(path)
         if (params.has('access_token')) {
           const token = params.get('access_token')
-          // const [error, data] = await getAccountInfo(token)
+          // const [error, data] = await Twitch.getAccountInfo(token)
           // console.log(data);
           // if (error) {
           //   return
