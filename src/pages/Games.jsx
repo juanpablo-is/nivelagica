@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Card, Game } from '@/components/index'
 import { useGames } from '@/store'
 
-function App () {
+const Games = () => {
   const { games, actualGame, selectGame } = useGames()
   const clientTMI = useGames(p => p.client)
 
@@ -41,4 +41,4 @@ function App () {
   )
 }
 
-export default App
+export default Games
