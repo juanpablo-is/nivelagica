@@ -7,7 +7,11 @@ const Home = () => {
       <main className='flex-1 flex flex-col justify-center gap-3 items-center'>
         <header className='flex flex-col gap-1 items-center'>
           <span className='fs-calc(0.4em_+_3.5vw)'>Juega</span>
-          <h1 className='fs-calc(0.1em_+_7vw)'>NUMÉRICA</h1>
+          <h1 className='fs-calc(0.5em_+_8vw)'>
+            {[...'NUMÉRICA'].map(letter => (
+              <span className='h-logo'>{letter}</span>
+            ))}
+          </h1>
         </header>
         <Button variant='primary'>Ingresar</Button>
       </main>

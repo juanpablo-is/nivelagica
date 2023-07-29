@@ -1,6 +1,9 @@
 import { defineConfig, presetWebFonts, presetUno } from 'unocss'
 
 export default defineConfig({
+  shortcuts: {
+    'h-logo': 'hover:text-accent ease-in duration-150 px-2'
+  },
   rules: [
     [
       /^grid-repeat-([\.\d]+)$/,
@@ -24,7 +27,8 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      light: '#db005c'
+      light: '#db005c',
+      accent: '#9146FF'
     },
 
     animation: {
