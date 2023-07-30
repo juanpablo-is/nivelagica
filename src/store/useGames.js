@@ -50,10 +50,15 @@ const createStore = create(
         countTimeout: 10
       },
 
+      account: { user_id: '96693344', user: 'jp__is' },
+
       client: new Client({
         options: { debug: true },
         channels: ['jp__is']
       }),
+
+      twitchApi: null,
+      setTwitchApi: instance => set({ twitchApi: instance }),
 
       selectGame: id => {
         const { games } = get()
@@ -66,7 +71,6 @@ const createStore = create(
     {
       name: 'numerica',
       partialize: state => ({
-        actualGame: state.actualGame,
         settings: state.settings
       })
     }
