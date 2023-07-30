@@ -30,11 +30,11 @@ const Games = () => {
       {games.map(game => (
         <Card
           key={game.id}
-          className='gap-1 flex-col cursor-default'
+          className='gap-1 p-1 flex-col cursor-default'
           onClick={() => handleSelectGame(game.id)}
         >
           {game.icon && <span className='text-2xl'>{game.icon}</span>}
-          <h3>{game.title}</h3>
+          <h3 className='text-lg'>{game.title}</h3>
         </Card>
       ))}
     </div>
