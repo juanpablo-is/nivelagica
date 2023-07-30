@@ -3,6 +3,7 @@ body {
   min-width: 100vw;
   background-color: #09090b;
   color: white;
+  font-family: Oswald, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #root {
