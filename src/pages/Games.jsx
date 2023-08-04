@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 
-import { Card, Game } from '@/components'
 import { useGames } from '@/store'
+import { Game, Button } from '@/components'
+import GameList from '@/components/game/GameList'
+import SettingsGames from '@/components/game/SettingsGame'
 
 const Games = () => {
-  const { games, actualGame, selectGame } = useGames()
+  const { actualGame, selectGame } = useGames()
   const clientTMI = useGames(p => p.client)
 
   useEffect(() => {
@@ -17,8 +19,14 @@ const Games = () => {
     }
   }, [clientTMI])
 
-  const handleSelectGame = e => {
-    selectGame(e)
+  function handlerSubmit (e) {
+    e.preventDefault()
+
+    const formData = new FormData(e.target)
+    const { game, ...options } = Object.fromEntries(formData.entries())
+    if (game) {
+      selectGame(game, options)
+    }
   }
 
   if (actualGame) {
@@ -27,16 +35,18 @@ const Games = () => {
 
   return (
     <div className='grid gap-3 grid-repeat-130 max-w-2xl m-auto'>
-      {games.map(game => (
-        <Card
-          key={game.id}
-          className='gap-1 p-1 flex-col cursor-default'
-          onClick={() => handleSelectGame(game.id)}
-        >
-          {game.icon && <span className='text-2xl'>{game.icon}</span>}
-          <h3 className='text-lg'>{game.title}</h3>
-        </Card>
-      ))}
+      <form
+        className='flex flex-col gap-3 items-center p-3'
+        onSubmit={handlerSubmit}
+      >
+        <GameList />
+
+        <SettingsGames />
+
+        <Button variant='primary' type='submit'>
+          JUGAR
+        </Button>
+      </form>
     </div>
   )
 }
