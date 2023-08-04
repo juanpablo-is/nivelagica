@@ -45,9 +45,9 @@ const createStore = create(
       ],
       actualGame: null,
       settings: {
-        removeMod: false,
+        timeoutMod: false,
         timeout: false,
-        countTimeout: 10
+        timeoutCount: 1
       },
 
       account: { user_id: '96693344', user: 'jp__is' },
