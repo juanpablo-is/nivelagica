@@ -60,11 +60,11 @@ const createStore = create(
       twitchApi: null,
       setTwitchApi: instance => set({ twitchApi: instance }),
 
-      selectGame: id => {
+      selectGame: (id, settings = {}) => {
         const { games } = get()
         const game = games.find(g => g.id === id)
         if (game) {
-          set({ actualGame: game })
+          set(p => ({ actualGame: game, settings: {...p.settings, settings} }))
         }
       }
     }),
