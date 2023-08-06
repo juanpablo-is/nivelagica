@@ -1,10 +1,14 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState } from 'react'
+
 import { useGames } from '@/store'
 import { useStateRef } from '@/hooks'
 
-const Game = ({ title, score = {}, validate }) => {
-  const { high, player } = score
-  const clientTMI = useGames(p => p.client)
+const Game = ({ id: idGame, title, score = {}, validate }) => {
+  const [{ high, player }, setScore] = useState({
+    high: score.high || 0,
+    player: score.player || ''
+  })
+  const { client: clientTMI, twitchApi, settings = {} } = useGames()
 
   const [lastStore, setLastStore, ref] = useStateRef({
     message: '',
@@ -12,32 +16,56 @@ const Game = ({ title, score = {}, validate }) => {
     score: 0
   })
 
-  const handlerMessage = useCallback((channel, tags, message = '', self) => {
-    if (self) return
+  async function saveScore (a) {
+    console.log(a)
+  }
 
-    const {
-      mod,
-      ['display-name']: display_name,
-      ['message-type']: message_type
-    } = tags
+  const handlerMessage = useCallback(
+    async (channel, tags, message = '', self) => {
+      if (self) return
 
-    const data = {
-      mod,
-      display_name,
-      message_type,
-      message,
-      message_trim: message.trim()
-    }
+      const {
+        mod,
+        ['display-name']: display_name,
+        ['message-type']: message_type,
+        ['user-id']: user_id
+      } = tags
 
-    const { status } = validate({ lastStore: ref.current, data })
-    if (status === true) {
-      setLastStore(p => ({ message, player: display_name, score: p.score + 1 }))
-      // validar si es high-score y guardar
-    } else if (status === false) {
-      setLastStore({ message: '', player: '', score: 0 })
-      // validar si se debe dar timeout
-    }
-  }, [])
+      const data = {
+        isMod: Boolean(mod),
+        isBroadcaster: `#${display_name}` === channel,
+        display_name,
+        message_type,
+        message,
+        message_trim: message.trim()
+      }
+
+      const { status } = validate({ lastStore: ref.current, data })
+      if (status === true) {
+        const newScore = ref.current.score + 1
+        setLastStore({ message, player: display_name, score: newScore })
+
+        if (newScore > high) {
+          setScore({ high: newScore, player: display_name })
+          await saveScore({
+            account: channel.substring(1),
+            player: display_name,
+            score: newScore,
+            game: idGame
+          })
+        }
+      } else if (status === false) {
+        setLastStore({ message: '', player: '', score: 0 })
+        if (
+          settings.timeout &&
+          !(data.isBroadcaster || (data.isMod && !settings.timeoutMod))
+        ) {
+          await twitchApi.timeout({ user: user_id, time: 2, game: idGame })
+        }
+      }
+    },
+    []
+  )
 
   useEffect(() => {
     if (!clientTMI) return
@@ -51,12 +79,15 @@ const Game = ({ title, score = {}, validate }) => {
   return (
     <div>
       <h2>
-        Playing <span className='text-light font-bold'>{title}</span>
+        Playing <span className='text-accent font-bold'>{title}</span>
       </h2>
-      <header className='flex gap-1 flex-col'>
-        <span>HIGH SCORE: {high}</span>
-        <span>by {player}</span>
-      </header>
+
+      {player && (
+        <header className='flex gap-1 flex-col'>
+          <span>HIGH SCORE: {high}</span>
+          <span>by {player}</span>
+        </header>
+      )}
 
       <span>{JSON.stringify(lastStore)}</span>
     </div>
