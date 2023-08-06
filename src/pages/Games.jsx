@@ -22,10 +22,15 @@ const Games = () => {
   function handlerSubmit (e) {
     e.preventDefault()
 
-    const formData = new FormData(e.target)
-    const { game, ...options } = Object.fromEntries(formData.entries())
-    if (game) {
-      selectGame(game, options)
+    const inputs = e.target.querySelectorAll('input')
+    const new_options = [...inputs].reduce((acc, input) => {
+      const { type, value, name, checked } = input
+      acc[name] = type === 'checkbox' ? checked : value
+      return acc
+    }, {})
+
+    if (new_options.game) {
+      selectGame(new_options)
     }
   }
 
