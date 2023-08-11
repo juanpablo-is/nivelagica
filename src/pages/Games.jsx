@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
 import { useGames } from '@/store'
+import { Drawer } from '@/Drawer'
 import { Game, Button } from '@/components'
 import GameList from '@/components/game/GameList'
 import SettingsGames from '@/components/game/SettingsGame'
@@ -44,6 +45,8 @@ const Games = () => {
         className='flex flex-col gap-3 items-center p-3'
         onSubmit={handlerSubmit}
       >
+        <Drawer />
+
         <GameList />
 
         <SettingsGames />
