@@ -1,4 +1,7 @@
 import { catchify } from '@/utils'
+
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID || ''
+
 class TwitchAPI {
   static #TWITCH_URL = 'https://id.twitch.tv/oauth2'
   static #HELIX_URL = 'https://api.twitch.tv/helix'
@@ -41,7 +44,7 @@ class TwitchAPI {
         method: 'POST',
         headers: {
           authorization: `Bearer ${this.#token}`,
-          'Client-Id': 's7zgzmyk5osg4px90j6lfemmhukrx7',
+          'Client-Id': CLIENT_ID,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ data })
@@ -52,7 +55,7 @@ class TwitchAPI {
 
   static authURL() {
     const url = new URL(`${TwitchAPI.#TWITCH_URL}/authorize`)
-    url.searchParams.set('client_id', 's7zgzmyk5osg4px90j6lfemmhukrx7')
+    url.searchParams.set('client_id', CLIENT_ID)
     url.searchParams.set('response_type', 'token')
     url.searchParams.set('scope', 'openid moderator:manage:banned_users')
     url.searchParams.set('redirect_uri', location.origin + '/oauth')
