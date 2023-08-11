@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@iconify-json/lucide': ^1.1.116
   '@types/react': ^18.2.15
   '@types/react-dom': ^18.2.7
   '@unocss/reset': ^0.53.6
@@ -28,6 +29,7 @@ dependencies:
   zustand: 4.3.9_react@18.2.0
 
 devDependencies:
+  '@iconify-json/lucide': 1.1.116
   '@types/react': 18.2.17
   '@types/react-dom': 18.2.7
   '@vitejs/plugin-react': 4.0.3_vite@4.4.7
@@ -535,6 +537,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/lucide/1.1.116:
+    resolution: {integrity: sha512-bROjPVr5AS8hnVxpOLGWr7C9Frj0RFP9HBatPgw7zPhcuAnxb6APAJJi3DY6IDniNr0xxTK0Z2KkoxU3du0YAw==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types/2.0.0:
