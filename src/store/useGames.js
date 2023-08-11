@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
 import { Client } from 'tmi.js'
+
+import TwitchNick from '@/components/drawers/TwitchNick'
 
 const withStorageDOMEvents = store => {
   const storageEventCallback = e => {
@@ -25,6 +26,7 @@ const createStore = create(
           id: 'nick',
           title: 'Twitch nick',
           icon: '🥊',
+          drawerComponent: TwitchNick,
           validate: ({ lastStore, data }) => {
             const { message: lastMessage, player: lastPlayer } = lastStore
             const { message_trim, message_type, display_name } = data
