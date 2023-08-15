@@ -77,19 +77,41 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
   }, [clientTMI, handlerMessage])
 
   return (
-    <div>
-      <h2>
-        Playing <span className='text-accent font-bold'>{title}</span>
+    <div className='w-screen h-screen flex flex-col items-center justify-center gap-2'>
+      <h2 className='flex flex-col items-center fs-calc(2vw_+_2vh_+_2vmin)'>
+        Jugando{' '}
+        <span className='text-accent font-bold fs-calc(5vw_+_2vh_+_2vmin)'>
+          {title}
+        </span>
       </h2>
 
       {player && (
-        <header className='flex gap-1 flex-col'>
-          <span>HIGH SCORE: {high}</span>
-          <span>by {player}</span>
+        <header className='flex gap-1 fs-calc(2vw_+_1vh_+_2vmin)'>
+          <p>
+            Record: <span className='text-accent font-bold'>{high}</span> por{' '}
+            {player}
+          </p>
         </header>
       )}
 
-      <span>{JSON.stringify(lastStore)}</span>
+      {lastStore.message && (
+        <div className='flex flex-col items-center justify-center'>
+          <div className='relative'>
+            <p className='flex flex-col items-center justify-center p-[2vw] gap-2 rounded-full bg-accent uppercase max-w-[12rem] aspect-square fs-calc(3vw_+_3vh_+_1vmin) fs-min(5vw,_100%)'>
+              {lastStore.message}
+            </p>
+            <span className='absolute flex items-center min-w-[2vw] min-h-[2vw] justify-center bg-dark min-w[30px] -top-1.5 -right-2.5 aspect-square border rounded-full fs-min(5vw,_100%) p-[min(6vw,20px)]'>
+              {lastStore.score}
+            </span>
+          </div>
+          <p className='fs-calc(1vw_+_2vh_+_2vmin)'>
+            por{' '}
+            <span className='fs-calc(3vw_+_2vh_+_2vmin)'>
+              {lastStore.player || '-'}
+            </span>
+          </p>
+        </div>
+      )}
     </div>
   )
 }
