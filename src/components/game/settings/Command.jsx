@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import Alert from '@/components/Alert'
+import { notAllowedCommands } from '@/utils/index'
 
-const NOT_ALLOW_COMMANDS = ['!game']
+const NOT_ALLOWED_COMMANDS = notAllowedCommands()
 
 const CommandSettings = () => {
   const [useCommand, setTimeout] = useState(false)
 
   function handlerBlurInput (e) {
     const value = e.target.value
-    if (NOT_ALLOW_COMMANDS.includes(value)) {
+    if (NOT_ALLOWED_COMMANDS.includes(value)) {
       const confirm = window.confirm(
         'Este comando posiblemente se esté usando en tu canal, ¿Desea usar igualmente este comando?'
       )
