@@ -7,14 +7,22 @@ class TwitchAPI {
   static #HELIX_URL = 'https://api.twitch.tv/helix'
 
   #token = null
+  #account_id = null
 
-  constructor(token) {
+  constructor(token, account_id) {
     this.#token = token
+    this.#account_id = account_id
+  }
+
+  setAccountId(account) {
+    this.#account_id = account
   }
 
   async timeout({ user, time, game }) {
+    if (!this.#account_id) return
+
     return await this.timeoutUser({
-      account: '96693344', // TODO: update
+      account: this.#account_id,
       data: {
         duration: time,
         user_id: user,
@@ -26,6 +34,8 @@ class TwitchAPI {
 
   // API
   async getAccountInfo() {
+    if (!this.#token) return
+
     return await catchify(
       fetch(`${TwitchAPI.#TWITCH_URL}/validate`, {
         headers: { authorization: `OAuth ${this.#token}` }
@@ -35,6 +45,8 @@ class TwitchAPI {
   }
 
   async timeoutUser({ account, data }) {
+    if (!this.#token) return
+
     const url = new URL(`${TwitchAPI.#HELIX_URL}/moderation/bans`)
     url.searchParams.set('broadcaster_id', account)
     url.searchParams.set('moderator_id', account)

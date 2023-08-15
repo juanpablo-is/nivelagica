@@ -21,16 +21,14 @@ const OAuth = () => {
           const api = new TwitchAPI(token)
           setTwitchApi(api)
 
-          // const [error, data] = await api.getAccountInfo(token)
-          // console.log(data);
-          // if (error) {
-          //   return
-          //   // return setErrorAuth(
-          //   //   'Se ha presentado un error en la autenticación, intente nuevamente'
-          //   // )
-          // }
+          const [error, data] = await api.getAccountInfo(token)
+          if (error) return setLocation('/')
 
-          window.sessionStorage.setItem('numerica_token', token)
+          api.setAccountId(data.user_id)
+          window.sessionStorage.setItem(
+            'numerica_jp',
+            JSON.stringify({ token, user_id: data.user_id })
+          )
           return setLocation('/games')
         }
       }
