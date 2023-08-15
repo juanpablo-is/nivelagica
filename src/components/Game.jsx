@@ -44,8 +44,7 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
         isBroadcaster: `#${display_name}` === channel,
         display_name,
         message_type,
-        message,
-        message_trim: message.trim()
+        message
       }
 
       if (settings.command) {
@@ -57,13 +56,16 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
         if (!validateCommand) return
 
         data.message = new_message
-        data.message_trim = new_message.trim()
       }
 
       const { status } = validate({ lastStore: ref.current, data })
       if (status === true) {
         const newScore = ref.current.score + 1
-        setLastStore({ message, player: display_name, score: newScore })
+        setLastStore({
+          message: data.message,
+          player: display_name,
+          score: newScore
+        })
 
         if (newScore > high) {
           setScore({ high: newScore, player: display_name })
