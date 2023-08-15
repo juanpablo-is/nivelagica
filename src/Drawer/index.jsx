@@ -8,17 +8,25 @@ const POSITIONS = {
   bottom: 'w-screen max-h-1/2 left-0 bottom-0 right-0 overflow-x-auto'
 }
 
-const Drawer = ({ position = 'top' }) => {
-  const [drawer, setDrawer] = useState({ component: null, position: position })
-  const _position = POSITIONS[drawer?.position] || POSITIONS.left
+const Drawer = ({ position = 'left', closeOverlay = true }) => {
+  const [drawer, setDrawer] = useState(() => {
+    const _position = POSITIONS[position] || POSITIONS.left
+    const _closeOverlay = Boolean(closeOverlay)
+    return { component: null, position: _position, closeOverlay: _closeOverlay }
+  })
+  const _position = POSITIONS[drawer?.position] || POSITIONS.left //TODO
+
+  useEffect(() => {
+    return DrawerState.subscribe(subscribeDrawer)
+  }, [])
+
+  function subscribeDrawer (data) {
+    setDrawer(prev => ({ ...prev, ...data }))
+  }
 
   function closeDrawer () {
     DrawerState.removeDrawer()
   }
-
-  useEffect(() => {
-    return DrawerState.subscribe(setDrawer)
-  }, [])
 
   if (!drawer || !drawer.component) return
 
@@ -26,7 +34,7 @@ const Drawer = ({ position = 'top' }) => {
     <div
       className='absolute top-0 right-0 bottom-0 left-0 w-screen h-screen bg-stone/50 z-40'
       onClick={e => {
-        if (e.currentTarget == e.target) {
+        if (drawer.closeOverlay && e.currentTarget == e.target) {
           closeDrawer()
         }
       }}
