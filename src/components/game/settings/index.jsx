@@ -1,3 +1,4 @@
+import CommandSettings from './Command'
 import TimeoutSettings from './Timeout'
 
 const SettingsGames = () => {
@@ -6,6 +7,7 @@ const SettingsGames = () => {
       <h2 className='text-lg'>Configuración:</h2>
 
       <TimeoutSettings />
+      <CommandSettings />
     </div>
   )
 }

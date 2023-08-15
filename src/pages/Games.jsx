@@ -4,7 +4,7 @@ import { useGames } from '@/store'
 import { Drawer } from '@/Drawer'
 import { Game, Button } from '@/components'
 import GameList from '@/components/game/GameList'
-import SettingsGames from '@/components/game/SettingsGame'
+import SettingsGames from '@/components/game/settings'
 
 const Games = () => {
   const { actualGame, selectGame } = useGames()
