@@ -3,9 +3,9 @@ import { useState } from 'react'
 const TimeoutSettings = () => {
   const [timeout, setTimeout] = useState(false)
   return (
-    <div className='flex flex-col gap-2 w-full'>
-      <div className='grid grid-repeat-250 gap-3'>
-        <div className='flex items-center pl-4 border-2 rounded-md'>
+    <div className='flex flex-col gap-2 p-4 w-full border-2 rounded-md'>
+      <div className='grid grid-repeat-250 gap-2'>
+        <div className='flex items-center'>
           <input
             id='timeout_user'
             type='checkbox'
@@ -16,14 +16,14 @@ const TimeoutSettings = () => {
           />
           <label
             htmlFor='timeout_user'
-            className='w-full py-4 ml-2 text-sm font-medium text-gray-200 dark:text-gray-300'
+            className='w-full py-1 ml-2 text-sm font-medium text-gray-200 dark:text-gray-300'
           >
             Timeout a usuarios?
           </label>
         </div>
 
         {timeout && (
-          <div className='flex items-center pl-4 border-2 rounded-md'>
+          <div className='flex items-center'>
             <input
               id='timeout_mod'
               type='checkbox'
@@ -33,7 +33,7 @@ const TimeoutSettings = () => {
             />
             <label
               htmlFor='timeout_mod'
-              className='w-full py-4 ml-2 text-sm font-medium text-gray-200 dark:text-gray-300'
+              className='w-full py-1 ml-2 text-sm font-medium text-gray-200 dark:text-gray-300'
             >
               Timeout a moderadores?
             </label>
@@ -42,7 +42,7 @@ const TimeoutSettings = () => {
       </div>
 
       {timeout && (
-        <div className='flex pl-4 border-2 rounded-md flex-col p-2 gap-2'>
+        <div className='flex flex-col gap-2'>
           <label htmlFor='timeout_count' className='text-sm font-medium'>
             Tiempo de timeout (s)
           </label>

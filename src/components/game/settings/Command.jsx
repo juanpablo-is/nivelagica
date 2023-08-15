@@ -4,8 +4,8 @@ const CommandSettings = () => {
   const [useCommand, setTimeout] = useState(false)
   return (
     <div className='flex flex-col gap-2 w-full'>
-      <div className='flex flex-col gap-1 border-2 rounded-md'>
-        <div className='flex items-center pl-4 w-full'>
+      <div className='flex flex-col gap-1 border-2 rounded-md p-4'>
+        <div className='flex items-center w-full'>
           <input
             id='use_command'
             type='checkbox'
@@ -16,14 +16,14 @@ const CommandSettings = () => {
           />
           <label
             htmlFor='use_command'
-            className='w-full py-4 ml-2 text-sm font-medium text-gray-200 dark:text-gray-300'
+            className='w-full py-1 ml-2 text-sm font-medium text-gray-200 dark:text-gray-300'
           >
             Usar comando?
           </label>
         </div>
 
         {useCommand && (
-          <div className='flex pl-4 flex-col p-2 gap-2 w-full'>
+          <div className='flex flex-col gap-2 w-full'>
             <label htmlFor='command' className='text-sm font-medium'>
               Ingrese comando
             </label>
