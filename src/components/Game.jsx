@@ -20,6 +20,14 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
     console.log(a)
   }
 
+  // Validate if message starts with command
+  function validateCommandMessage (message, command) {
+    const [c, ...m] = message.split(' ')
+
+    if (c !== command || m.length === 0) return [false]
+    return [true, m.join(' ')]
+  }
+
   const handlerMessage = useCallback(
     async (channel, tags, message = '', self) => {
       if (self) return
@@ -38,6 +46,18 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
         message_type,
         message,
         message_trim: message.trim()
+      }
+
+      if (settings.command) {
+        const [validateCommand, new_message] = validateCommandMessage(
+          message,
+          settings.command
+        )
+
+        if (!validateCommand) return
+
+        data.message = new_message
+        data.message_trim = new_message.trim()
       }
 
       const { status } = validate({ lastStore: ref.current, data })

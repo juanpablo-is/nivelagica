@@ -26,7 +26,8 @@ const createStore = create(
       settings: {
         timeoutMod: false,
         timeout: false,
-        timeoutCount: 1
+        timeoutCount: 1,
+        command: null,
       },
 
       account: { user_id: '96693344', user: 'jp__is' },
