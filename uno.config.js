@@ -1,4 +1,4 @@
-import { defineConfig, presetWebFonts, presetUno } from 'unocss'
+import { defineConfig, presetWebFonts, presetUno, presetIcons } from 'unocss'
 
 export default defineConfig({
   shortcuts: {
@@ -27,7 +27,8 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      accent: '#9146FF'
+      accent: '#9146FF',
+      dark: '#09090b'
     },
 
     animation: {
@@ -53,6 +54,7 @@ export default defineConfig({
       fonts: {
         primary: 'Oswald'
       }
-    })
+    }),
+    presetIcons(),
   ]
 })
