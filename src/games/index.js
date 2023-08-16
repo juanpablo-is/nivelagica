@@ -10,7 +10,7 @@ export class GameMode {
     this.icon = game.icon
   }
 
-  validate() { }
+  validate = () => { }
 
   setDrawerComponent(component) {
     this.drawerComponent = component

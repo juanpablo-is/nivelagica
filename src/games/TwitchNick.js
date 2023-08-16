@@ -12,7 +12,7 @@ class TwitchNick extends GameMode {
     this.setDrawerComponent(DrawerComponent)
   }
 
-  validate({ lastStore, data }) {
+  validate = ({ lastStore, data }) => {
     const { message: lastMessage, player: lastPlayer } = lastStore
     const { message: message_data, message_type, display_name } = data
     const [message, ...parts] = message_data.split(' ')
