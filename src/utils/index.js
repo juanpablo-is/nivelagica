@@ -47,4 +47,4 @@ const filesGamesMode = import.meta.glob(['../games/*.js', '!../games/index.js'],
   eager: true,
 })
 
-export const gamesMode = Object.values(filesGamesMode)
+export const gamesMode = Object.values(filesGamesMode).sort((a, b) => a.weight - b.weight)
