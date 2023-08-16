@@ -5,7 +5,8 @@ class PrimeNumber extends GameMode {
     super({
       id: 'prime',
       title: 'Números primos',
-      icon: '123'
+      icon: '123',
+      time: 1692224284000
     })
   }
 

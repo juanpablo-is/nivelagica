@@ -7,7 +7,8 @@ class TwitchNick extends GameMode {
       id: 'nick',
       title: 'Twitch nick',
       icon: '🥊',
-      weight: 0
+      weight: 0,
+      time: 1692224284000
     })
 
     this.setDrawerComponent(DrawerComponent)
