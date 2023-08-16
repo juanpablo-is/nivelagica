@@ -40,15 +40,13 @@ const Drawer = ({ position = 'left', closeOverlay = true }) => {
       }}
     >
       <div
-        className={`fixed z-40 p-4 transition-transform w-80 bg-dark ${_position}`}
+        className={`fixed flex flex-col gap-1 z-40 p-4 transition-transform w-80 bg-dark ${_position}`}
         tabIndex='-1'
         aria-labelledby='drawer-label'
       >
         <header className='flex justify-between align-center flex-row-reverse'>
           <button
             type='button'
-            data-drawer-hide='drawer-example'
-            aria-controls='drawer-example'
             className='text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white'
             onClick={closeDrawer}
           >
@@ -72,7 +70,7 @@ const Drawer = ({ position = 'left', closeOverlay = true }) => {
           {drawer.Header && drawer.Header}
         </header>
 
-        {drawer.component}
+        <div className='flex-1 overflow-auto'>{drawer.component}</div>
       </div>
     </div>
   )
