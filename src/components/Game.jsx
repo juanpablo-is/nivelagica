@@ -58,8 +58,8 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
         data.message = new_message
       }
 
-      const { status } = validate({ lastStore: ref.current, data })
-      if (status === true) {
+      const game = validate({ lastStore: ref.current, data })
+      if (game.status === true) {
         const newScore = ref.current.score + 1
         setLastStore({
           message: data.message,
@@ -76,13 +76,15 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
             game: idGame
           })
         }
-      } else if (status === false) {
+      } else if (game.status === false) {
         setLastStore({ message: '', player: '', score: 0 })
         if (
           settings.timeout &&
           !(data.isBroadcaster || (data.isMod && !settings.timeoutMod))
         ) {
-          await twitchApi.timeout({ user: user_id, time: 2, game: idGame })
+          const time =
+            game.durationTimeout || settings.timeoutCount * ref.current.score
+          await twitchApi.timeout({ user: user_id, time: time, game: idGame })
         }
       }
     },

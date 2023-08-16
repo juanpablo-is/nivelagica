@@ -24,7 +24,7 @@ class TwitchAPI {
     return await this.timeoutUser({
       account: this.#account_id,
       data: {
-        duration: time,
+        duration: time == 0 || Number.isNaN(time) ? 0 : time,
         user_id: user,
         reason: `Numérica en modo [${game}]`
       },
