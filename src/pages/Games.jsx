@@ -24,9 +24,21 @@ const Games = () => {
     e.preventDefault()
 
     const inputs = e.target.querySelectorAll('input')
-    const new_options = [...inputs].reduce((acc, input) => {
-      const { type, value, name, checked } = input
-      acc[name] = type === 'checkbox' ? checked : value
+    const types = [...inputs].reduce((acc, input) => {
+      acc[input.name] = input.type
+      return acc
+    }, {})
+
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData.entries())
+    const new_options = Object.entries(data).reduce((acc, [key, value]) => {
+      const type = types[key]
+
+      acc[key] = value
+      if (type === 'checkbox') {
+        acc[key] = value === 'on'
+      }
+
       return acc
     }, {})
 
