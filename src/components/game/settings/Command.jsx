@@ -5,7 +5,7 @@ import { notAllowedCommands } from '@/utils/index'
 const NOT_ALLOWED_COMMANDS = notAllowedCommands()
 
 const CommandSettings = () => {
-  const [useCommand, setTimeout] = useState(false)
+  const [useCommand, setUseCommand] = useState(false)
 
   function handlerBlurInput (e) {
     const value = e.target.value
@@ -30,13 +30,13 @@ const CommandSettings = () => {
             id='use_command'
             type='checkbox'
             checked={useCommand}
-            name='timeout'
+            name='use_command'
             className='w-4 h-4 bg-gray-100 border-gray-300 rounded'
-            onChange={e => setTimeout(e.target.checked)}
+            onChange={e => setUseCommand(e.target.checked)}
           />
           <label
             htmlFor='use_command'
-            className='w-full py-1 ml-2 text-sm font-medium text-gray-200 dark:text-gray-300'
+            className='w-full py-1 ml-2 font-medium text-gray-200 dark:text-gray-300'
           >
             Usar comando?
           </label>
@@ -49,7 +49,7 @@ const CommandSettings = () => {
             </Alert>
 
             <div className='flex flex-col gap-2 w-full'>
-              <label htmlFor='command' className='text-sm font-medium'>
+              <label htmlFor='command' className='font-medium'>
                 Ingrese comando
               </label>
               <input

@@ -8,7 +8,7 @@ export default [
     drawerComponent: TwitchNick,
     validate: ({ lastStore, data }) => {
       const { message: lastMessage, player: lastPlayer } = lastStore
-      const { message_trim: message_data, message_type, display_name } = data
+      const { message: message_data, message_type, display_name } = data
       const [message, ...parts] = message_data.split(' ')
 
       if (parts.length > 0) return { status: undefined }

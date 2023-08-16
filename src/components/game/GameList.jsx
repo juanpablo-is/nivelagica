@@ -10,7 +10,7 @@ const GameList = () => {
       addDrawer(<Component />, {
         position: 'bottom',
         Header: (
-          <h5 className='inline-flex items-center gap-2 text-base font-semibold text-gray-400'>
+          <h5 className='inline-flex items-center gap-2 text-lg font-semibold text-gray-400'>
             <span className='i-lucide-info' /> {title}
           </h5>
         )
