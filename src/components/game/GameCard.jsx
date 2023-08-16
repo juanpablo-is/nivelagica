@@ -4,7 +4,7 @@ const GameCard = ({ game, isNew, onShowDrawer }) => {
   return (
     <li className='relative'>
       {isNew && (
-        <span className='bg-indigo-500 text-sm -top-2 left-3 z-100 font-medium text-white text-center rounded-full px-2 py-0.5 absolute '>
+        <span className='bg-indigo-500 text-sm -top-2 left-3 z-10 font-medium text-white text-center rounded-full px-2 py-0.5 absolute '>
           Nuevo modo juego
         </span>
       )}
@@ -13,7 +13,7 @@ const GameCard = ({ game, isNew, onShowDrawer }) => {
         type='radio'
         name='game'
         value={game.id}
-        className='peer absolute w-full h-full top-0 -z-1'
+        className='peer absolute w-full top-0 -z-1'
         required
       />
 

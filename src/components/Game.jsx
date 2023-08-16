@@ -121,10 +121,10 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
       {lastStore.message && (
         <div className='flex flex-col items-center justify-center'>
           <div className='relative'>
-            <p className='flex flex-col items-center justify-center p-[2vw] gap-2 rounded-full bg-accent uppercase max-w-[12rem] aspect-square fs-calc(3vw_+_3vh_+_1vmin) fs-min(5vw,_100%)'>
+            <p className='flex flex-col items-center justify-center min-w-[100px] p-[2vw] gap-2 rounded-full bg-accent uppercase max-w-[12rem] aspect-square fs-calc(3vw_+_3vh_+_1vmin) fs-min(5vw,_100%)'>
               {lastStore.message}
             </p>
-            <span className='absolute flex items-center min-w-[2vw] min-h-[2vw] justify-center bg-dark min-w[30px] -top-1.5 -right-2.5 aspect-square border rounded-full fs-min(5vw,_100%) p-[min(6vw,20px)]'>
+            <span className='absolute flex items-center min-w-[2vw] min-h-[2vw] justify-center bg-dark min-w[30px] -top-2.5 -right-3.5 aspect-square border rounded-full fs-min(5vw,_100%) p-[min(6vw,20px)]'>
               {lastStore.score}
             </span>
           </div>
