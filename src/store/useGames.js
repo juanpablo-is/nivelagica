@@ -1,8 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { Client } from 'tmi.js'
-
-import games from './games.json'
+import { gamesMode } from '@/utils/index'
 
 const withStorageDOMEvents = store => {
   const storageEventCallback = e => {
@@ -21,7 +20,7 @@ const withStorageDOMEvents = store => {
 const createStore = create(
   persist(
     (set, get) => ({
-      games: games,
+      games: gamesMode,
       actualGame: null,
       settings: {
         timeoutMod: false,

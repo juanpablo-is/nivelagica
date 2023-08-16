@@ -41,3 +41,10 @@ const COMMANDS_STREAMELEMENTS = [
 export const notAllowedCommands = () => {
   return [...COMMANDS_NIGHTBOT, ...COMMANDS_STREAMELEMENTS]
 }
+
+const filesGamesMode = import.meta.glob(['../games/*.js', '!../games/index.js'], {
+  import: 'default',
+  eager: true,
+})
+
+export const gamesMode = Object.values(filesGamesMode)
