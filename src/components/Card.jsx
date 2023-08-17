@@ -10,7 +10,7 @@ const Card = ({ as = 'div', children, className = '', ...props }) => {
 
   return (
     <Element
-      className='flex relative overflow-hidden rounded-xl border-black p-[1px] backdrop-blur-3xl bg-white hover:bg-accent peer-checked:bg-accent'
+      className='flex relative overflow-hidden rounded-xl p-0.5 backdrop-blur-3xl bg-white hover:bg-accent peer-checked:bg-accent'
       {...props}
     >
       {/* <span className='absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]' /> */}

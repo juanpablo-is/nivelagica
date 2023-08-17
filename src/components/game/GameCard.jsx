@@ -5,7 +5,7 @@ const GameCard = ({ game, isNew, onShowDrawer }) => {
     <li className='relative'>
       {isNew && (
         <span className='bg-indigo-500 text-sm -top-2 left-3 z-10 font-medium text-white text-center rounded-full px-2 py-0.5 absolute '>
-          Nuevo modo juego
+          ¡NUEVO!
         </span>
       )}
       <input
