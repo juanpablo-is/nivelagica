@@ -25,7 +25,6 @@ class PrimeNumber extends GameMode {
     if (lastMessage && number <= lastMessage) return { status: false }
 
     const next_prime = this.nextPrime(lastMessage)
-    console.log({ next_prime });
     return { status: next_prime === number }
   }
 
