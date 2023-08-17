@@ -12,12 +12,12 @@ class Fibonacci extends GameMode {
 
   validate = ({ lastStore, data }) => {
     const { message: lastMessage, player: lastPlayer } = lastStore
-    const { message: message_data, message_type, display_name } = data
+    const { message: message_data, message_type, username } = data
     const [message, ...parts] = message_data.split(' ')
 
     if (parts.length > 0) return { status: undefined }
     if (message_type !== 'chat') return { status: undefined }
-    if (lastPlayer === display_name) return { status: undefined }
+    if (lastPlayer === username) return { status: undefined }
 
     const number = Number(message)
     if (Number.isNaN(number)) return { status: undefined }

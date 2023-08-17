@@ -34,15 +34,15 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
 
       const {
         mod,
-        ['display-name']: display_name,
+        username,
         ['message-type']: message_type,
         ['user-id']: user_id
       } = tags
 
       const data = {
         isMod: Boolean(mod),
-        isBroadcaster: `#${display_name}` === channel,
-        display_name,
+        isBroadcaster: `#${username}` === channel,
+        username,
         message_type,
         message
       }
@@ -63,15 +63,15 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
         const newScore = ref.current.score + 1
         setLastStore({
           message: data.message,
-          player: display_name,
+          player: username,
           score: newScore
         })
 
         if (newScore > high) {
-          setScore({ high: newScore, player: display_name })
+          setScore({ high: newScore, player: username })
           await saveScore({
             account: channel.substring(1),
-            player: display_name,
+            player: username,
             score: newScore,
             game: idGame
           })
