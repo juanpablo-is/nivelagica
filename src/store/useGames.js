@@ -31,10 +31,21 @@ const createStore = create(
 
       account: { user_id: '96693344', user: 'jp__is' },
 
-      client: new Client({
-        options: { debug: true },
-        channels: ['jp__is']
-      }),
+      client: null,
+      connectTMI: () => {
+        const { channel } = JSON.parse(window.sessionStorage.getItem('numerica_jp') || "{}")
+        if (!channel) return
+
+        const client = new Client({
+          options: { debug: true },
+          channels: [channel]
+        })
+
+        client.connect()
+        set({ client: client })
+
+        return () => client.disconnect()
+      },
 
       twitchApi: null,
       setTwitchApi: instance => set({ twitchApi: instance }),

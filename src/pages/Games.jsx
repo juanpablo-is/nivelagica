@@ -8,17 +8,9 @@ import SettingsGames from '@/components/game/settings'
 
 const Games = () => {
   const { actualGame, selectGame } = useGames()
-  const clientTMI = useGames(p => p.client)
+  const connectTMI = useGames(p => p.connectTMI)
 
-  useEffect(() => {
-    if (!clientTMI) return
-
-    clientTMI.connect()
-
-    return () => {
-      clientTMI.disconnect()
-    }
-  }, [clientTMI])
+  useEffect(connectTMI, [connectTMI])
 
   function handlerSubmit (e) {
     e.preventDefault()
@@ -48,7 +40,8 @@ const Games = () => {
   }
 
   if (actualGame) {
-    return <Game {...actualGame} score={{ high: 20, player: 'jp__is' }} />
+    // return <Game {...actualGame} score={{ high: 20, player: 'jp__is' }} />
+    return <Game {...actualGame} />
   }
 
   return (
