@@ -5,6 +5,7 @@ specifiers:
   '@types/react': ^18.2.15
   '@types/react-dom': ^18.2.7
   '@unocss/reset': ^0.53.6
+  '@vercel/analytics': ^1.0.2
   '@vitejs/plugin-react': ^4.0.3
   eslint: ^8.45.0
   eslint-plugin-react: ^7.32.2
@@ -21,6 +22,7 @@ specifiers:
 
 dependencies:
   '@unocss/reset': 0.53.6
+  '@vercel/analytics': 1.0.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tailwind-merge: 1.14.0
@@ -846,6 +848,10 @@ packages:
     transitivePeerDependencies:
       - rollup
     dev: true
+
+  /@vercel/analytics/1.0.2:
+    resolution: {integrity: sha512-BZFxVrv24VbNNl5xMxqUojQIegEeXMI6rX3rg1uVLYUEXsuKNBSAEQf4BWEcjQDp/8aYJOj6m8V4PUA3x/cxgg==}
+    dev: false
 
   /@vitejs/plugin-react/4.0.3_vite@4.4.7:
     resolution: {integrity: sha512-pwXDog5nwwvSIzwrvYYmA2Ljcd/ZNlcsSG2Q9CNDBwnsd55UGAyr2doXtB5j+2uymRCnCfExlznzzSFbBRcoCg==}
