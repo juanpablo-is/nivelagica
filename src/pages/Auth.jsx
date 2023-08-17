@@ -6,18 +6,17 @@ import { Twitch as TwitchAPI } from '@/api'
 
 const Auth = ({ children }) => {
   const sessionNumerica = useMemo(
-    () => window.sessionStorage.getItem('numerica_jp'),
+    () => JSON.parse(window.sessionStorage.getItem('numerica_jp') || '{}'),
     []
   )
   const { setTwitchApi, twitchApi } = useGames()
 
-  if (!sessionNumerica) {
+  if (!sessionNumerica || !sessionNumerica.channel || !sessionNumerica.token) {
     return <Redirect to='/' />
   }
 
   if (!twitchApi) {
-    const session = JSON.parse(sessionNumerica)
-    setTwitchApi(new TwitchAPI(session.token, session.user_id))
+    setTwitchApi(new TwitchAPI(sessionNumerica.token, sessionNumerica.user_id))
   }
 
   return children

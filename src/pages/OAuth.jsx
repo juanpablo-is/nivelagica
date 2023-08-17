@@ -24,10 +24,18 @@ const OAuth = () => {
           const [error, data] = await api.getAccountInfo(token)
           if (error) return setLocation('/')
 
+          if (!token || !data.user_id || !data.login) {
+            return setLocation('/')
+          }
+
           api.setAccountId(data.user_id)
           window.sessionStorage.setItem(
             'numerica_jp',
-            JSON.stringify({ token, user_id: data.user_id })
+            JSON.stringify({
+              token,
+              user_id: data.user_id,
+              channel: data.login
+            })
           )
           return setLocation('/games')
         }
