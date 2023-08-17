@@ -26,7 +26,7 @@ class TwitchAPI {
       data: {
         duration: time == 0 || Number.isNaN(time) ? 0 : time,
         user_id: user,
-        reason: `Numérica en modo [${game}]`
+        reason: `Nivelagica en modo [${game}]`
       },
       token: this.#token
     })

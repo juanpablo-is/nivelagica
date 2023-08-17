@@ -1,5 +1,7 @@
 export { default as catchify } from './catchify'
 
+export const KEY_SESSION_STORAGE = "nivelagica_jp"
+
 const COMMANDS_NIGHTBOT = [
   '!game',
   '!commands',

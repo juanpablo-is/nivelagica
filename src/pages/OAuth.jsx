@@ -4,6 +4,7 @@ import { useLocation } from 'wouter'
 import { Twitch as TwitchAPI } from '@/api'
 import Jelly from '@/components/loaders/Jelly'
 import { useGames } from '@/store'
+import { KEY_SESSION_STORAGE } from '@/utils/index'
 
 const OAuth = () => {
   const [_, setLocation] = useLocation()
@@ -30,7 +31,7 @@ const OAuth = () => {
 
           api.setAccountId(data.user_id)
           window.sessionStorage.setItem(
-            'numerica_jp',
+            KEY_SESSION_STORAGE,
             JSON.stringify({
               token,
               user_id: data.user_id,

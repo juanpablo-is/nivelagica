@@ -3,20 +3,21 @@ import { Redirect } from 'wouter'
 
 import { useGames } from '@/store'
 import { Twitch as TwitchAPI } from '@/api'
+import { KEY_SESSION_STORAGE as KEY } from '@/utils/index'
 
 const Auth = ({ children }) => {
-  const sessionNumerica = useMemo(
-    () => JSON.parse(window.sessionStorage.getItem('numerica_jp') || '{}'),
+  const session = useMemo(
+    () => JSON.parse(window.sessionStorage.getItem(KEY) || '{}'),
     []
   )
   const { setTwitchApi, twitchApi } = useGames()
 
-  if (!sessionNumerica || !sessionNumerica.channel || !sessionNumerica.token) {
+  if (!session || !session.channel || !session.token) {
     return <Redirect to='/' />
   }
 
   if (!twitchApi) {
-    setTwitchApi(new TwitchAPI(sessionNumerica.token, sessionNumerica.user_id))
+    setTwitchApi(new TwitchAPI(session.token, session.user_id))
   }
 
   return children

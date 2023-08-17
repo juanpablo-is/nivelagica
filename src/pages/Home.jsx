@@ -12,7 +12,7 @@ const Home = () => {
         <header className='flex flex-col gap-1 items-center'>
           <span className='fs-calc(0.4em_+_3.5vw)'>Juega</span>
           <h1 className='fs-calc(0.5em_+_8vw)'>
-            {[...'NUMÉRICA'].map((letter, index) => (
+            {[...'NIVELAGICA'].map((letter, index) => (
               <span key={index} className='h-logo'>
                 {letter}
               </span>
