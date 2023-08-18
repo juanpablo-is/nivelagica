@@ -24,7 +24,7 @@ class TwitchAPI {
     return await this.timeoutUser({
       account: this.#account_id,
       data: {
-        duration: time == 0 || Number.isNaN(time) ? 0 : time,
+        duration: time == 0 || Number.isNaN(time) ? 1 : time,
         user_id: user,
         reason: `Nivelagica en modo [${game}]`
       },
