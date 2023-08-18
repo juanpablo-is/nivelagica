@@ -18,7 +18,7 @@ const Home = () => {
             ))}
           </h1>
         </header>
-        <Button as='a' variant='primary' href={URL}>
+        <Button as='a' variant='primary' href={URL} target="_blank">
           Ingresar
         </Button>
       </main>
