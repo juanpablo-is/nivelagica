@@ -1,10 +1,9 @@
+import { useMemo } from 'react'
 import { Twitch } from '@/api'
 import { Button, Footer } from '@/components'
 
 const Home = () => {
-  function handlerAuth () {
-    window.location.href = Twitch.authURL()
-  }
+  const URL = useMemo(Twitch.authURL, [])
 
   return (
     <div className='flex flex-col w-full h-screen items-center p-3 gap-2 font-primary'>
@@ -19,7 +18,7 @@ const Home = () => {
             ))}
           </h1>
         </header>
-        <Button variant='primary' onClick={handlerAuth}>
+        <Button as='a' variant='primary' href={URL}>
           Ingresar
         </Button>
       </main>

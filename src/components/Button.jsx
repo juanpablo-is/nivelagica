@@ -10,13 +10,16 @@ const Button = ({
   className = '',
   variant = 'primary',
   onClick,
+  as = 'button',
   ...props
 }) => {
   const _class = twMerge(variants[variant] ?? variants.primary, className)
+  const Element = ['button', 'a'].includes(as) ? as : 'button'
+
   return (
-    <button className={_class} onClick={onClick} {...props}>
+    <Element className={_class} onClick={onClick} {...props}>
       {children}
-    </button>
+    </Element>
   )
 }
 
