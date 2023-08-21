@@ -22,7 +22,6 @@ class TwitchAPI {
     if (!this.#account_id) return
 
     return await this.timeoutUser({
-      account: this.#account_id,
       data: {
         duration: time == 0 || Number.isNaN(time) ? 1 : time,
         user_id: user,
@@ -30,6 +29,11 @@ class TwitchAPI {
       },
       token: this.#token
     })
+  }
+
+  async toggleVIP(lastVip, newVip) {
+    await this.removeVIP(lastVip)
+    await this.addVIP(newVip)
   }
 
   // API
@@ -44,12 +48,12 @@ class TwitchAPI {
     )
   }
 
-  async timeoutUser({ account, data }) {
+  async timeoutUser({ data }) {
     if (!this.#token) return
 
     const url = new URL(`${TwitchAPI.#HELIX_URL}/moderation/bans`)
-    url.searchParams.set('broadcaster_id', account)
-    url.searchParams.set('moderator_id', account)
+    url.searchParams.set('broadcaster_id', this.#account_id)
+    url.searchParams.set('moderator_id', this.#account_id)
 
     return await catchify(
       fetch(url.href, {
@@ -65,11 +69,51 @@ class TwitchAPI {
     )
   }
 
+  async removeVIP(user_id) {
+    if (!this.#token || !user_id) return
+
+    const url = new URL(`${TwitchAPI.#HELIX_URL}/channels/vips`)
+    url.searchParams.set('broadcaster_id', this.#account_id)
+    url.searchParams.set('user_id', user_id)
+
+    return await catchify(
+      fetch(url.href, {
+        method: 'DELETE',
+        headers: {
+          authorization: `Bearer ${this.#token}`,
+          'Client-Id': CLIENT_ID,
+          'Content-Type': 'application/json'
+        }
+      }),
+      { json: true }
+    )
+  }
+
+  async addVIP(user_id) {
+    if (!this.#token || !user_id) return
+
+    const url = new URL(`${TwitchAPI.#HELIX_URL}/channels/vips`)
+    url.searchParams.set('broadcaster_id', this.#account_id)
+    url.searchParams.set('user_id', user_id)
+
+    return await catchify(
+      fetch(url.href, {
+        method: 'POST',
+        headers: {
+          authorization: `Bearer ${this.#token}`,
+          'Client-Id': CLIENT_ID,
+          'Content-Type': 'application/json'
+        }
+      }),
+      { json: true }
+    )
+  }
+
   static authURL() {
     const url = new URL(`${TwitchAPI.#TWITCH_URL}/authorize`)
     url.searchParams.set('client_id', CLIENT_ID)
     url.searchParams.set('response_type', 'token')
-    url.searchParams.set('scope', 'openid moderator:manage:banned_users')
+    url.searchParams.set('scope', 'openid channel:manage:vips moderator:manage:banned_users')
     url.searchParams.set('redirect_uri', location.origin + '/oauth')
     return url.href
   }
