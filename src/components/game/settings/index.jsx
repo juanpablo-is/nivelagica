@@ -1,5 +1,6 @@
 import CommandSettings from './Command'
 import TimeoutSettings from './Timeout'
+import VIPSettings from './VIP'
 
 const SettingsGames = () => {
   return (
@@ -7,6 +8,7 @@ const SettingsGames = () => {
       <h2 className='text-lg'>Configuración:</h2>
 
       <TimeoutSettings />
+      <VIPSettings /> {/* TODO: añadir si está habilitado para usar VIPs */}
       <CommandSettings />
     </div>
   )
