@@ -1,27 +1,27 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback } from 'react'
 
 import { useGames } from '@/store'
 import { useStateRef } from '@/hooks'
 
 const Game = ({ id: idGame, title, score = {}, validate }) => {
-  const [{ high, player }, setScore] = useState({
+  const [{ high, player }, setScore, scoreRef] = useStateRef({
     high: score.high || 0,
     player: score.player || ''
   })
   const { client: clientTMI, twitchApi, settings = {} } = useGames()
 
-  const [lastStore, setLastStore, ref] = useStateRef({
+  const [lastStore, setLastStore, storeRef] = useStateRef({
     message: '',
     player: '',
     score: 0
   })
 
-  async function saveScore (a) {
-    console.log(a)
+  async function saveScore(a) {
+    // console.log("SAVE", a)
   }
 
   // Validate if message starts with command
-  function validateCommandMessage (message, command) {
+  function validateCommandMessage(message, command) {
     const [c, ...m] = message.split(' ')
 
     if (c !== command || m.length === 0) return [false]
@@ -58,23 +58,27 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
         data.message = new_message
       }
 
-      const game = validate({ lastStore: ref.current, data })
+      const game = validate({ lastStore: storeRef.current, data })
       if (game.status === true) {
-        const newScore = ref.current.score + 1
+        const newScore = storeRef.current.score + 1
         setLastStore({
           message: data.message,
           player: username,
           score: newScore
         })
 
-        if (newScore > high) {
-          setScore({ high: newScore, player: username })
+        if (newScore > scoreRef.current.high) {
+          if (settings.toggle_vip === TRUE) {
+            await twitchApi.toggleVIP(scoreRef.current.player, username)
+          }
+
           await saveScore({
             account: channel.substring(1),
             player: username,
             score: newScore,
             game: idGame
           })
+          setScore({ high: newScore, player: username })
         }
       } else if (game.status === false) {
         setLastStore({ message: '', player: '', score: 0 })
@@ -83,7 +87,7 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
           !(data.isBroadcaster || (data.isMod && !settings.timeoutMod))
         ) {
           const time =
-            game.durationTimeout || settings.timeoutCount * ref.current.score
+            game.durationTimeout || settings.timeoutCount * storeRef.current.score
           await twitchApi.timeout({ user: user_id, time: time, game: idGame })
         }
       }
