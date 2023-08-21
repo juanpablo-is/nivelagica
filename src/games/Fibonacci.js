@@ -1,4 +1,5 @@
 import { GameMode } from "./index";
+import DrawerComponent from '@/components/drawers/Fibonacci'
 
 class Fibonacci extends GameMode {
   constructor() {
@@ -8,6 +9,8 @@ class Fibonacci extends GameMode {
       icon: '🔗',
       time: 1692232745000
     })
+
+    this.setDrawerComponent(DrawerComponent)
   }
 
   validate = ({ lastStore, data }) => {

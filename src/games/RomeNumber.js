@@ -1,4 +1,5 @@
 import { GameMode } from "./index";
+import DrawerComponent from '@/components/drawers/RomeNumber'
 
 class PrimeNumber extends GameMode {
   constructor() {
@@ -8,6 +9,8 @@ class PrimeNumber extends GameMode {
       icon: 'VII',
       time: 1692381156000
     })
+
+    this.setDrawerComponent(DrawerComponent)
   }
 
   validate = ({ lastStore, data }) => {

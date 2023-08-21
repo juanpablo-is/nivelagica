@@ -12,7 +12,6 @@ const TwitchNick = () => {
           Si no hay mensaje previo o se reinicia, para empezar debes enviar tu
           propio username (ex, <em>@jp__is</em>)
         </li>
-        <li>Solo se permite un mensaje consecutivo por usuario</li>
       </ul>
     </div>
   )
