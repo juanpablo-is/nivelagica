@@ -68,7 +68,7 @@ const Game = ({ id: idGame, title, score = {}, validate }) => {
         })
 
         if (newScore > scoreRef.current.high) {
-          if (settings.toggle_vip === TRUE) {
+          if (settings.toggle_vip === true) {
             await twitchApi.toggleVIP(scoreRef.current.player, username)
           }
 
