@@ -1,4 +1,4 @@
-import { defineConfig, presetWebFonts, presetUno, presetIcons } from 'unocss'
+import { defineConfig, presetUno, presetIcons } from 'unocss'
 
 export default defineConfig({
   shortcuts: {
@@ -49,12 +49,6 @@ export default defineConfig({
   },
   presets: [
     presetUno(),
-    presetWebFonts({
-      provider: 'google',
-      fonts: {
-        primary: 'Oswald'
-      }
-    }),
     presetIcons(),
   ]
 })
