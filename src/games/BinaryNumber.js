@@ -25,6 +25,9 @@ class PrimeNumber extends GameMode {
 
     if (!lastMessage) return { status: message === '0' }
 
+    const num = Number(message)
+    if (isNaN(num)) return { status: undefined }
+
     const decimal = this.binaryToDecimal(message)
     const decimal_last = this.binaryToDecimal(lastMessage)
 
