@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Twitch } from '@/api'
-import { Button, Footer } from '@/components'
+import { Button, Footer, Alert } from '@/components'
 
 const Home = () => {
   const URL = useMemo(Twitch.authURL, [])
@@ -18,6 +18,7 @@ const Home = () => {
             ))}
           </h1>
         </header>
+        <Alert variant="warning" ><strong>¡CUIDADO!</strong> no muestre la página de autenticación, se puede ver el token</Alert>
         <Button as='a' variant='primary' href={URL} target="_blank">
           Ingresar
         </Button>
